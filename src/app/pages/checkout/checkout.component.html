@@ -1,0 +1,77 @@
+<div class="flex flex-col sm:flex-row my-2">
+  <div class="sm:w-1/2 mx-2">
+    <div *ngIf="cart$ | async as cart" class="h-full">
+      <div *ngIf="cart.length; else noItem">
+        <fs-cart-table></fs-cart-table>
+      </div>
+    </div>
+
+    <ng-template #noItem>
+      <div class="flex items-center justify-center h-full">
+        <span class="text-red-600">No Item in the cart</span>
+        <a routerLink="/" class="pl-2 text-blue-600 underline"
+          >Select Product</a
+        >
+      </div>
+    </ng-template>
+  </div>
+
+  <div class="sm:w-1/2 mx-2">
+    <!-- Flutterwave -->
+    <div class="p-2 shadow-md my-2">
+      <div class="mb-2 p-2 border-2 rounded-lg">
+        <input
+          type="radio"
+          [(ngModel)]="paymentMethod"
+          id="flutterwave"
+          name="payment"
+          value="flutterwave"
+        />
+        <label
+          class="ml-2 text-lg text-gray-700 font-semibold"
+          for="flutterwave"
+          >Pay with Flutterwave</label
+        >
+      </div>
+
+      <!-- Paystack -->
+      <div class="mb-2 p-2 border-2 rounded-lg">
+        <input
+          type="radio"
+          [(ngModel)]="paymentMethod"
+          id="paystack"
+          name="payment"
+          value="paystack"
+        />
+        <label class="ml-2 text-lg text-gray-700 font-semibold" for="paystack"
+          >Pay with Paystack</label
+        >
+      </div>
+
+      <!-- Error Message -->
+      <div *ngIf="paymentErrorMessage" class="bg-red-700 text-white">
+        {{ paymentErrorMessage }}
+      </div>
+
+      <div class="p-2 shadow-xl rounded">
+        <input
+          type="text"
+          placeholder="Enter your email"
+          class="outline-none border px-2 py-1 rounded mb-2 w-full bg-slate-800 text-white"
+          [(ngModel)]="userEmail"
+        />
+
+        <!-- Make payment -->
+        <div *ngIf="cart$ | async as cart" class="text-center">
+          <button
+            class="px-5 py-2 rounded-lg bg-green-700 text-white disabled:opacity-50"
+            (click)="makePayment()"
+            [disabled]="!cart.length"
+          >
+            Pay Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

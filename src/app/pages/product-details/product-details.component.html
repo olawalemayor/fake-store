@@ -1,0 +1,37 @@
+<div *ngIf="product$ | async as product" class="mx-2">
+  <div class="flex flex-col lg:flex-row">
+    <div class="lg:w-1/4 flex items-center justify-center">
+      <img [src]="product.image" [title]="product.title" class="h-[400px]" />
+    </div>
+    <div class="lg:w-3/4 p-2">
+      <h2 class="text-center font-bold text-2xl">{{ product.title }}</h2>
+
+      <p
+        class="border p-2 my-2 bg-gray-600 text-white rounded text-lg font-thin"
+      >
+        {{ product.description }}
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-between">
+        <span class="font-bold text-2xl">{{ product.price | currency }}</span>
+
+        <div class="flex items-center">
+          <input
+            class="border outline-none px-2 py-1"
+            type="number"
+            [value]="quantity"
+            (keyup)="setQuantity(quantityRef.value)"
+            #quantityRef
+          />
+
+          <button
+            class="px-5 py-2 bg-orange-600 text-white hover:bg-orange-500"
+            (click)="addToCart(product)"
+          >
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="flex">
+  <div class="w-1/2 text-center border font-bold">Item</div>
+  <div class="w-1/4 text-center border font-bold">Price</div>
+  <div class="w-1/6 text-center border font-bold">Quantity</div>
+  <div class="w-1/12 border"></div>
+</div>
+
+<div *ngFor="let item of cart$ | async" class="flex">
+  <span class="w-1/2 text-center border">
+    {{ item.product.title }}
+  </span>
+
+  <span class="w-1/4 flex items-center justify-center border">
+    {{ item.product.price | currency }}
+  </span>
+
+  <span class="w-1/6 flex items-center justify-center border">
+    {{ item.quantity }}
+  </span>
+
+  <span class="w-1/12 flex items-center justify-center border">
+    <button
+      class="text-red-700 font-semibold"
+      (click)="removeCartItem(item.product)"
+    >
+      X
+    </button>
+  </span>
+</div>
+
+<div class="flex">
+  <div class="w-1/2 text-center border"></div>
+  <div class="w-1/4 text-center border font-bold">
+    {{ cartTotal$ | async | currency }}
+  </div>
+  <div class="w-1/6 text-center border"></div>
+  <div class="w-1/12 border"></div>
+</div>

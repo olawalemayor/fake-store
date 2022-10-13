@@ -1,0 +1,25 @@
+<div class="flex flex-col">
+  <h1 class="text-center my-2 lg:my-5">
+    <a
+      routerLink=""
+      class="text-blue-700 text-5xl sm:text-7xl font-bold italic"
+    >
+      FAKESTORE
+    </a>
+  </h1>
+
+  <div class="mx-2 xl:mx-0 px-2 py-1 flex justify-end bg-slate-400 relative">
+    <span (click)="toggleCartView()">
+      <fs-cart></fs-cart>
+    </span>
+
+    <div
+      class="absolute top-8 w-full sm:w-3/5 lg:w-1/2"
+      *ngIf="cart$ | async as cart"
+    >
+      <ng-container *ngIf="(isCartVisible$ | async) && cart.length">
+        <fs-cart-view></fs-cart-view>
+      </ng-container>
+    </div>
+  </div>
+</div>

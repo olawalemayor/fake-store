@@ -1,0 +1,31 @@
+<form class="mb-2">
+  <div class="flex flex-col mb-2">
+    <label for="category">Category:</label>
+    <select
+      name="category"
+      id="category"
+      class="outline-none border rounded px-2 py-1"
+      [(ngModel)]="category"
+      (ngModelChange)="handleCategoryChange()"
+    >
+      <option value="">Select Category</option>
+      <option *ngFor="let item of categories$ | async" [value]="item">
+        {{ item | uppercase }}
+      </option>
+    </select>
+  </div>
+
+  <div class="flex flex-col mb-2">
+    <label for="sort">Sort:</label>
+    <select
+      name="sort"
+      id="sort"
+      class="outline-none border rounded px-2 py-1"
+      [(ngModel)]="sorting"
+      (ngModelChange)="handleSort()"
+    >
+      <option value="asc">Ascending</option>
+      <option value="desc">Descending</option>
+    </select>
+  </div>
+</form>
