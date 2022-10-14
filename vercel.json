@@ -2,9 +2,7 @@
   "redirects": [
     {
       "source": "/api/:match",
-      "destination": "https://api.flutterwave.com/v3/:match",
-      "statusCode": 200,
-      "permanent": true
+      "destination": "https://api.flutterwave.com/v3/:match"
     }
   ],
   "rewrites": [
