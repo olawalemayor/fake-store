@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/flutter-api",
+      "destination": "https://api.flutterwave.com/v3",
+      "permanent": true
+    }
+  ]
+}
