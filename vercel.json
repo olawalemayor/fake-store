@@ -1,14 +1,14 @@
 {
   "redirects": [
     {
-      "source": "/flutter-api/payments",
+      "source": "/api/payments",
       "destination": "https://api.flutterwave.com/v3/payments",
       "permanent": true
     }
   ],
   "headers": [
     {
-      "source": "flutter-api/(.*)",
+      "source": "api/(.*)",
       "headers": [
         { "key": "Access-Control-Allow-Credentials", "value": "true" },
         { "key": "Access-Control-Allow-Origin", "value": "*" },

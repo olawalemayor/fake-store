@@ -33,7 +33,7 @@ export class PaymentService {
 
   payWithFlutterWave(amount: number, email: string) {
     return this._http.post<IFlutterwaveResponse>(
-      'flutter-api/payments',
+      'api/payments',
       {
         tx_ref: new Date().toString(),
         amount,
