@@ -6,5 +6,11 @@
       "statusCode": 200,
       "permanent": true
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/api",
+      "destination": ""
+    }
   ]
 }
