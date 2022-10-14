@@ -1,3 +1,16 @@
 {
-  "routes": [{ "src": "/api/*", "dest": "https://api.flutterwave.com/v3/*" }]
+  "redirects": [
+    {
+      "source": "/api/:match",
+      "destination": "https://api.flutterwave.com/v3/:match",
+      "statusCode": 200,
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api",
+      "destination": ""
+    }
+  ]
 }
