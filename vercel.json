@@ -1,9 +1,8 @@
 {
-  "redirects": [
+  "rewrites": [
     {
       "source": "/api/payments",
-      "destination": "https://api.flutterwave.com/v3/payments",
-      "permanent": true
+      "destination": "https://api.flutterwave.com/v3/payments"
     }
   ],
   "headers": [
