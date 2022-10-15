@@ -3,8 +3,7 @@ export const environment = {
   apiUrl: 'https://fakestoreapi.com',
 
   // Flutterwave
-  flutterAPIUrl: 'https://api.flutterwave.com/v3',
-  flutterSecretKey: 'FLWSECK_TEST-9c44d346d961c9e858a634822100717e-X',
+  flutterwavePublicKey: 'FLWPUBK_TEST-e8b8d8f2e6509e3fd8b3ee4a3a52cb2f-X',
 
   // Paystack
   paystackApiUrl: 'https://api.paystack.co',

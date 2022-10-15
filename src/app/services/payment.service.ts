@@ -1,11 +1,11 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import {
-  IPaystackResponse,
-  IFlutterwaveResponse,
-} from '../models/payment-response';
+import { IPaystackResponse } from '../models/payment-response';
 import { DOCUMENT } from '@angular/common';
+import { FlutterwaveRequest } from '../models/flutterwave-request';
+
+declare function FlutterwaveCheckout(data: FlutterwaveRequest): any;
 
 @Injectable({ providedIn: 'root' })
 export class PaymentService {
@@ -32,33 +32,29 @@ export class PaymentService {
   }
 
   payWithFlutterWave(amount: number, email: string) {
-    return this._http.post<IFlutterwaveResponse>(
-      'api/payments',
-      {
-        tx_ref: new Date().toString(),
-        amount,
-        currency: 'USD',
-        redirect_url: `${this.document.location.host}/paid-success`,
-        meta: {
-          consumer_id: 23,
-          consumer_mac: '92a3-912ba-1192a',
-        },
-        customer: {
-          email,
-          phonenumber: '080****4528',
-          name: 'Test User',
-        },
-        customizations: {
-          title: 'Fake store Payments',
-          logo: 'http://www.piedpiper.com/app/themes/joystick-v27/images/logo.png',
-        },
+    const paymentData: FlutterwaveRequest = {
+      public_key: environment.flutterwavePublicKey,
+      tx_ref: new Date().toString(),
+      amount,
+      currency: 'USD',
+      payment_options: 'card, banktransfer, ussd',
+      redirect_url: `${this.document.location.host}/paid-success`,
+      meta: {
+        consumer_id: 23,
+        consumer_mac: '92a3-912ba-1192a',
       },
-      {
-        headers: {
-          Authorization: `Bearer ${environment.flutterSecretKey}`,
-          'content-type': 'application/json',
-        },
-      }
-    );
+      customer: {
+        email,
+        phonenumber: '080****4528',
+        name: 'Test User',
+      },
+      customizations: {
+        title: 'Fake store Payments',
+        description: 'Payment for item bought',
+        logo: 'http://www.piedpiper.com/app/themes/joystick-v27/images/logo.png',
+      },
+    };
+
+    return FlutterwaveCheckout(paymentData);
   }
 }

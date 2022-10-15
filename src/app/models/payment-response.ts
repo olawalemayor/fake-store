@@ -7,11 +7,3 @@ export interface IPaystackResponse {
     reference: string;
   };
 }
-
-export interface IFlutterwaveResponse {
-  status: string;
-  message: string;
-  data: {
-    link: string;
-  };
-}

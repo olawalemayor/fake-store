@@ -52,16 +52,7 @@ export class CheckoutComponent implements OnInit {
 
       case 'flutterwave':
         this.cartTotal.pipe(takeUntil(this.sub)).subscribe((total) => {
-          this.paymentService
-            .payWithFlutterWave(total, this.userEmail)
-            .pipe(takeUntil(this.sub))
-            .subscribe((res) => {
-              if (res.status !== 'success') {
-                this.paymentErrorMessage = res.message;
-              } else {
-                window.location.href = res.data.link;
-              }
-            });
+          this.paymentService.payWithFlutterWave(total, this.userEmail);
         });
         break;
 
